@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="zens.top - Your one stop ZENCash blockchain explorer">
+    <meta name="keywords" content="blockchain, explorer, zencash">
+    <meta name="author" content="Kendrick Tan (kendricktan)">
+
+    <link rel="stylesheet" href="//mincss.com/entireframework.min.css">
+
+    <style>
+        .footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 1rem;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav" tabindex="-1">
+        <div class="container">
+            <a class="pagename current" href="#">zens.top</a>
+
+            <div style="float: right; margin-top: -5px">
+                <input type="text" class="smooth" style="background-color: #fff;" placeholder="tx id or block hash" />
+                <button style="background-color: #95A5A6;" class="btn btn-sm smooth">Search!</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %} {% endblock %}
+    </div>
+
+    <div class="footer">
+         <p>zens.top &copy; 2017 | MIT Licensed</p>
+         <p>Built by Kendrick Tan - <a href="https://github.com/kendricktan/zenstop">source code</a> </p>
+    </footer>
+</body>
+
+</html>
