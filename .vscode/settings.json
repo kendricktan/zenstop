@@ -1,6 +1,0 @@
-// Place your settings in this file to overwrite default and user settings.
-{
-    "python.venvPath": "~/.miniconda/envs",
-    "python.pythonPath": "/home/kendrick/.miniconda/envs/zenstop/bin/python",
-    "python.linting.flake8Path": "/home/kendrick/.miniconda/envs/zenstop/bin/flake8"
-}
