@@ -9,9 +9,10 @@
 
     <link rel="stylesheet" href="//mincss.com/entireframework.min.css">
 
+    <title>{{ title }}</title>
+
     <style>
         .footer {
-            position: absolute;
             right: 0;
             bottom: 0;
             left: 0;
@@ -20,18 +21,20 @@
             color: #fff;
             text-align: center;
         }
+
+        a{
+            color: #4B77BE;
+        }
     </style>
 </head>
 
 <body>
-    <nav class="nav" tabindex="-1">
+    <nav data-hide-during-focus "" data-tap-toggle="false" class="nav" tabindex="-1" on-tap="this.focus()">
         <div class="container">
-            <a class="pagename current" href="#">zens.top</a>
+            <a class="pagename current" href="/">zens.top</a>
 
-            <div style="float: right; margin-top: -5px">
-                <input type="text" class="smooth" style="background-color: #fff;" placeholder="tx id or block hash" />
-                <button style="background-color: #95A5A6;" class="btn btn-sm smooth">Search!</button>
-            </div>
+            <input id="search-query" style="background-color: #fff" type="text" placeholder="tx id or block hash.">
+            <input id="search-button" onclick="search()" style="background-color: #ecf0f1" type="submit" value="Search">
         </div>
     </nav>
 
@@ -39,10 +42,34 @@
         {% block content %} {% endblock %}
     </div>
 
+    <br/>
+
     <div class="footer">
-         <p>zens.top &copy; 2017 | MIT Licensed</p>
-         <p>Built by Kendrick Tan - <a href="https://github.com/kendricktan/zenstop">source code</a> </p>
-    </footer>
+        <p>zens.top &copy; 2017 | MIT Licensed</p>
+        <p>Built by Kendrick Tan - <a href="https://github.com/kendricktan/zenstop">source code</a> </p>
+        </footer>
+
+        <script>
+            // Search functionality
+            function search() {
+                var q = document.getElementById('search-query').value;
+                q = q.replace('/', '')
+
+                if (q.startsWith('00000')) {
+                    window.location = '/block/' + q;
+                }
+                else {
+                    window.location = '/tx/' + q;
+                }
+            }
+
+            // Hit enter
+            document.getElementById('search-query').onkeypress = function (e) {
+                if (e.keyCode == 13) {
+                    document.getElementById('search-button').click();
+                }
+            }
+        </script>
 </body>
 
 </html>

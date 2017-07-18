@@ -1,35 +1,53 @@
 {% extends "base.html" %} {% block content %}
 <div class="row">
-    <div class="col c8">
-        <h3>
-            Latest blocks
-        </h3>
+    <div class="col c4">
+        <h2>Extra Info</h2>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>blocks</td>
+                    <td>{{ mining_info["blocks"] }}</td>
+                </tr>
+                <tr>
+                    <td>difficulty</td>
+                    <td>{{ mining_info["difficulty"] }}</td>
+                </tr>
+                <tr>
+                    <td>network sol/s</td>
+                    <td>{{ mining_info["networksolps"] }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <div class="col c4">
-        <h3>
-            Extra Info
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>Blocks</td>
-                        <td>{{ blocks }}</td>
-                    </tr>
-                    <tr>
-                        <td>Difficulty</td>
-                        <td>{{ difficulty }}</td>
-                    </tr>
-                    <tr>
-                        <td>Network Sol/s</td>
-                        <td>{{ networksolps }}</td>
-                    </tr>
-                    <tr>
-                        <td>Network Hash/s</td>
-                        <td>{{ networkhashps }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </h3>
+    <div class="col c8">
+
     </div>
+
+    <div class="col c12">
+        <h2>Latest Blocks</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>height</th>
+                    <th>timestamp</th>
+                    <th>num tx</th>
+                    <th>size</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for block in latest_blocks %}
+                <tr>
+                    <td><a href='/block/{{ block["hash"] }}'>{{ block["height"] }}</a></td>
+                    <td>{{ epoch_to_datetime(block["time"]) }}</td>
+                    <td>{{ block["tx"]|length }}</td>
+                    <td>{{ block["size"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>    
+
 </div>
 {% endblock %}

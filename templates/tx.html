@@ -1,0 +1,51 @@
+{% extends "base.html" %} {% block content %}
+<div class="row">
+
+    {% if txid is defined %}
+    <div class="col c12">
+        <h2>tx id <input style="width: 90%" value="{{ txid }}"/></h2>        
+        <p></p>
+
+        <h3>Summary</h3>
+        <table class="table">
+            <col width="30%">
+            <col width="70%">
+            <tbody>
+                <tr>
+                    <td>txid</td>
+                    <td>{{ txid }}</td>
+                </tr>
+                <tr>
+                    <td>verion</td>
+                    <td>{{ version }}</td>
+                </tr>
+                <tr>
+                    <td>locktime</td>
+                    <td>{{ locktime }}</td>
+                </tr> 
+                <tr>
+                    <td>coinbase</td>
+                    <td>{{ coinbase }}</td>
+                </tr> 
+            </tbody>
+        </table>
+
+        <h3>txs (total value: {{ tx_value_total }})</h3>
+        <table class="table">
+            <col width="20%">
+            <col width="30%">
+            <tbody>
+                {% for t in tx_addr %}
+                <tr>
+                    <td>{{ t[0] }}</td>
+                    <td>{{ t[1] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <h1>Invalid transaction id</h1>
+    {% endif %}
+</div>
+{% endblock %}

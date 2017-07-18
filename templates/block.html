@@ -1,0 +1,92 @@
+{% extends "base.html" %} {% block content %}
+<div class="row">
+
+    {% if time is defined %}
+    <div class="col c12">
+        <h2>Block #{{ height }}</h2>
+        <strong>BlockHash</strong> {{ hash }}
+        <p></p>
+
+        <h3>Summary</h3>
+
+        <table class="table">
+            <col width="30%">
+            <col width="70%">
+            <tbody>
+                <tr>
+                    <td>anchor</td>
+                    <td>{{ anchor }}</td>
+                </tr>
+                <tr>
+                    <td>bits</td>
+                    <td>{{ bits }}</td>
+                </tr>
+                <tr>
+                    <td>chainwork</td>
+                    <td>{{ chainwork }}</td>
+                </tr>
+                <tr>
+                    <td>confirmations</td>
+                    <td>{{ confirmations }}</td>
+                </tr>
+                <tr>
+                    <td>difficulty</td>
+                    <td>{{ difficulty }}</td>
+                </tr>
+                <tr>
+                    <td>hash</td>
+                    <td>{{ hash }}</td>
+                </tr>
+                <tr>
+                    <td>height</td>
+                    <td>{{ height }}</td>
+                </tr>
+                <tr>
+                    <td>merkleroot</td>
+                    <td>{{ merkleroot }}</td>
+                </tr>
+                <tr>
+                    <td>nonce</td>
+                    <td>{{ nonce }}</td>
+                </tr>
+                <tr>
+                    <td>previousblockhash</td>
+                    <td><a href="/block/{{ previousblockhash }}/">{{ previousblockhash }}</a></td>
+                </tr>
+                <tr>
+                    <td>size</td>
+                    <td>{{ size }}</td>
+                </tr>
+                <tr>
+                    <td>solution</td>
+                    <td><textarea style="width: 100%">{{ solution }}</textarea></td>
+                </tr>
+                <tr>
+                    <td>timestamp</td>
+                    <td>{{ epoch_to_datetime(time) }}</td>
+                </tr>
+                <tr>
+                    <td>version</td>
+                    <td>{{ version }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Transactions</h3>
+        <table>
+            <tbody>
+                {% for t in tx %}
+                    <tr>
+                        <td>
+                        <a href="/tx/{{ t }}">{{ t }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <h1>Invalid block hash</h1>
+    {% endif %}
+</div>
+{% endblock %}
